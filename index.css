@@ -107,19 +107,8 @@ header {
     justify-content: center;
     text-align: center;
     position: relative;
-    overflow: hidden; /* Hide the scaled background */
-}
-
-.hero-bg-animated {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('hero-bg.png') no-repeat center center;
-    background-size: cover;
-    z-index: 0;
-    animation: kenBurns 20s ease-in-out infinite alternate;
+    overflow: hidden;
+    background: radial-gradient(circle at center, #111d2b 0%, var(--bg-dark) 100%);
 }
 
 #particles-canvas {
@@ -136,7 +125,7 @@ header {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at center, rgba(10, 15, 24, 0.4) 0%, var(--bg-dark) 100%);
+    background: radial-gradient(circle at center, rgba(10, 15, 24, 0.2) 0%, var(--bg-dark) 80%);
     z-index: 2;
 }
 
@@ -147,14 +136,6 @@ header {
     animation: floatContent 6s ease-in-out infinite;
 }
 
-@keyframes kenBurns {
-    0% {
-        transform: scale(1.0);
-    }
-    100% {
-        transform: scale(1.15) rotate(1deg);
-    }
-}
 
 @keyframes floatContent {
     0%, 100% {
