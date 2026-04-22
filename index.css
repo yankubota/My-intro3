@@ -107,10 +107,19 @@ header {
     justify-content: center;
     text-align: center;
     position: relative;
+    overflow: hidden; /* Hide the scaled background */
+}
+
+.hero-bg-animated {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background: url('hero-bg.png') no-repeat center center;
     background-size: cover;
-    opacity: 1;
-    transform: none;
+    z-index: 0;
+    animation: kenBurns 20s ease-in-out infinite alternate;
 }
 
 #hero::before {
@@ -118,12 +127,32 @@ header {
     position: absolute;
     inset: 0;
     background: radial-gradient(circle at center, rgba(10, 15, 24, 0.4) 0%, var(--bg-dark) 100%);
+    z-index: 1;
 }
 
 .hero-content {
     position: relative;
-    z-index: 1;
+    z-index: 2;
     max-width: 900px;
+    animation: floatContent 6s ease-in-out infinite;
+}
+
+@keyframes kenBurns {
+    0% {
+        transform: scale(1.0);
+    }
+    100% {
+        transform: scale(1.15) rotate(1deg);
+    }
+}
+
+@keyframes floatContent {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
 }
 
 .hero-tag {
