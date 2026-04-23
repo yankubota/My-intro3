@@ -221,12 +221,30 @@
             observer.observe(section);
         });
 
-        // --- Particles Animation ---
+        // Typing Animation Logic
+        const typingTitle = document.getElementById('typing-title');
+        const textToType = "データで診て、AIで動かし、人の才能で伸ばす。";
+        let charIndex = 0;
+
+        function typeEffect() {
+            if (charIndex < textToType.length) {
+                const char = textToType.charAt(charIndex);
+                if (char === "、") {
+                    typingTitle.innerHTML += "<span>" + char + "</span><br>";
+                } else {
+                    typingTitle.innerHTML += "<span>" + char + "</span>";
+                }
+                charIndex++;
+                setTimeout(typeEffect, 100);
+            }
+        }
+
+        // --- Particles Animation (Tweaked) ---
         const canvas = document.getElementById('particles-canvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
-        const particleCount = 100;
-        const connectionDistance = 180;
+        const particleCount = 80; // Adjusted for larger size
+        const connectionDistance = 220; // Larger connection size
 
         class Particle {
             constructor() {
@@ -235,9 +253,9 @@
             init() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.vx = (Math.random() - 0.5) * 1.2;
-                this.vy = (Math.random() - 0.5) * 1.2;
-                this.size = Math.random() * 2 + 1;
+                this.vx = (Math.random() - 0.5) * 1.8; // Faster
+                this.vy = (Math.random() - 0.5) * 1.8; // Faster
+                this.size = Math.random() * 4 + 3; // Larger points (3px to 7px)
             }
             update() {
                 this.x += this.vx;

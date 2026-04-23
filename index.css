@@ -161,6 +161,15 @@ header {
     margin-bottom: 1.5rem;
 }
 
+#typing-title span {
+    background: white;
+    color: #0a0f18;
+    padding: 0 8px;
+    display: inline-block;
+    margin: 4px 2px;
+    border-radius: 4px;
+}
+
 .hero-subtitle {
     font-size: 1.5rem;
     color: var(--text-muted);
