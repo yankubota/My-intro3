@@ -27,11 +27,7 @@
             <canvas id="particles-canvas"></canvas>
             <div class="hero-content container">
                 <span class="hero-tag">Data x AI x Talent</span>
-                <h1 class="hero-title">
-                    データで診て、<br>
-                    AIで動かし、<br>
-                    <span class="gradient-text">人の才能で伸ばす。</span>
-                </h1>
+                <h1 class="hero-title" id="typing-title"></h1>
                 <p class="hero-subtitle">
                     yankubota ｜ Personal Tech Lab 代表<br>
                     中小企業のDXを、"その場で動く成果"に変える伴走者
@@ -226,18 +222,37 @@
         const textToType = "データで診て、AIで動かし、人の才能で伸ばす。";
         let charIndex = 0;
 
+        // Add cursor element
+        const cursor = document.createElement('span');
+        cursor.className = 'cursor';
+        typingTitle.appendChild(cursor);
+
         function typeEffect() {
             if (charIndex < textToType.length) {
                 const char = textToType.charAt(charIndex);
+                const charSpan = document.createElement('span');
+                
                 if (char === "、") {
-                    typingTitle.innerHTML += "<span>" + char + "</span><br>";
+                    charSpan.innerHTML = char + "<br>";
                 } else {
-                    typingTitle.innerHTML += "<span>" + char + "</span>";
+                    charSpan.textContent = char;
                 }
+                
+                // Apply gradient style to the last part "人の才能で伸ばす。"
+                if (charIndex >= 15) {
+                    charSpan.className = 'gradient-text';
+                }
+
+                typingTitle.insertBefore(charSpan, cursor);
                 charIndex++;
-                setTimeout(typeEffect, 100);
+                setTimeout(typeEffect, 120);
             }
         }
+
+        // Start typing on load
+        window.addEventListener('load', () => {
+            setTimeout(typeEffect, 500); // Small delay for better feel
+        });
 
         // --- Particles Animation (Tweaked) ---
         const canvas = document.getElementById('particles-canvas');
